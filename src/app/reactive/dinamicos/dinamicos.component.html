@@ -1,1 +1,84 @@
-<p>dinamicos works!</p>
+<h2>Reactive: <small>Dinámicos</small></h2>
+<hr>
+
+<form autocomplete="off">
+   <!-- Nombre -->
+    <div class="row mb-3">
+
+        <label for="" class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input 
+                type="text"
+                class="form-control"
+                placeholder="Nombre">
+            <span 
+                class="form-text text-danger">
+                Este campo es Obligatorio
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Agregar Favorito -->
+    <div class="row mb-3">
+
+        <label for="" class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input 
+                    type="text"
+                    class="form-control"
+                    (keyup.enter)="null"
+                    placeholder="Agregar Favorito">
+                <button type="button"
+                    class="btn btn-outline-primary"
+                    (click)="null">
+                    Agregar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lista de Juegos Favoritos -->
+    <div class="row mb-3">
+
+        <label for="" class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+            <!-- <div class="input-group  mb-1"  *ngFor="let juego of persona.favoritos; let i = index">
+                <input  
+                        [name]="'favorito'+i"
+                        required
+                        class="form-control">
+                <button type="button"
+                    class="btn btn-outline-danger"
+                    (click)="null">
+                    Eliminar
+                </button>
+            </div> -->
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+            <button type="button"
+                (click)="null"
+                class="btn btn-primary float-end">
+                Guardar
+            </button>
+        </div>
+        
+    </div>
+</form>
+
+<!-- <div class="row">
+    {{miFormulario.value|json}}
+    <br>
+    {{miFormulario.touched}}
+    <br>
+    <pre>
+        {{persona|json}}
+    </pre>
+</div> -->
