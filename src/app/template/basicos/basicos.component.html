@@ -3,46 +3,88 @@
 
 <div class="row">
     <div class="col">
-        <form>
+        <form 
+            autocomplete="off"
+            (ngSubmit)="guardarInfo()" 
+            #miFormulario="ngForm">
+            
             <!-- Producto -->
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Producto</label>
+                <label for="producto" class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
                     <input 
                         type="text"
                         class="form-control"
+                        ngModel
+                        name="producto"
+                        required
+                        minlength="3"
                         placeholder="Nombre del Producto">
-                    <span class="form-text text-danger">Debe de ser mayor a dos letras</span>
+                    <span 
+                        class="form-text text-danger"
+                        *ngIf="nombreValido()">
+                        Debe de ser mayor a dos letras
+                    </span>
                 </div>
             </div>
 
             <!-- Precio -->
             <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Precio</label>
+                <label for="precio" class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
                     <input 
                         type="number"
                         class="form-control"
+                        ngModel
+                        name="precio"
+                        min="0"
                         placeholder="Precio del Precio">
+                    <span 
+                        class="form-text text-danger"
+                        *ngIf="precioValido()">
+                        El precio debe ser mayor o igual a cero.
+                    </span>
                 </div>
             </div>
 
             <!-- Existencias -->
             <div class="mb-3 row">
-                <label for="" class="col-sm-3 col-form-label">Existencias</label>
+                <label for="existencia" class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
                     <input 
                         type="number"
                         class="form-control"
+                        ngModel
+                        name="existencia"
                         placeholder="Existencias del Producto">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end">Guardar</button>
+                    <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary float-end">Guardar</button>
                 </div>
             </div>
+            
         </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{ miFormulario.valid }}</pre>
+    </div>
+    <div class="col">
+        <span>Pristine</span>
+        <pre>{{ miFormulario.pristine }}</pre>
+    </div>
+    <div class="col">
+        <span>Touched</span>
+        <pre>{{ miFormulario.touched }}</pre>
+    </div>
+    <div class="col">
+        <span>Value</span>
+        <pre>{{ miFormulario.value | json}}</pre>
     </div>
 </div>
