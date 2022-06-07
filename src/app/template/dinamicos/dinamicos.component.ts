@@ -10,7 +10,16 @@ export class DinamicosComponent implements OnInit {
 
   constructor() { }
 
+  nombre: string = '';
+
   ngOnInit(): void {
   }
 
+  guardar(){
+    console.log("Formulario Posteado");
+  }
+
+  nombreValido(){
+
+  }
 }
