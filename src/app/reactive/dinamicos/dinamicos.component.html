@@ -1,7 +1,7 @@
 <h2>Reactive: <small>Dinámicos</small></h2>
 <hr>
 
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
    <!-- Nombre -->
     <div class="row mb-3">
 
@@ -10,8 +10,10 @@
             <input 
                 type="text"
                 class="form-control"
+                formControlName="nombre"
                 placeholder="Nombre">
             <span 
+                *ngIf="campoValido('nombre')"
                 class="form-text text-danger">
                 Este campo es Obligatorio
             </span>
@@ -44,18 +46,17 @@
     <div class="row mb-3">
 
         <label for="" class="col-sm-3 col-form-label">Favoritos</label>
-        <div class="col-sm-9">
-            <!-- <div class="input-group  mb-1"  *ngFor="let juego of persona.favoritos; let i = index">
-                <input  
-                        [name]="'favorito'+i"
-                        required
-                        class="form-control">
+        <div class="col-sm-9" formArrayName="favoritos">
+            <div class="input-group  mb-1"
+                *ngFor="let fav of favoritosArr.controls; let i = index">
+                <input
+                    [formControlName]="i"
+                    class="form-control">
                 <button type="button"
-                    class="btn btn-outline-danger"
-                    (click)="null">
+                    class="btn btn-outline-danger">
                     Eliminar
                 </button>
-            </div> -->
+            </div>
         </div>
 
     </div>
@@ -63,8 +64,7 @@
     <div class="row">
 
         <div class="col-12">
-            <button type="button"
-                (click)="null"
+            <button type="submit"
                 class="btn btn-primary float-end">
                 Guardar
             </button>
@@ -73,12 +73,9 @@
     </div>
 </form>
 
-<!-- <div class="row">
+<div class="row">
     {{miFormulario.value|json}}
     <br>
-    {{miFormulario.touched}}
+    Touched:  {{miFormulario.touched}}
     <br>
-    <pre>
-        {{persona|json}}
-    </pre>
-</div> -->
+</div>
