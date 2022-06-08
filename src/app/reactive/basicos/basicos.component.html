@@ -15,7 +15,7 @@
                         class="form-control"
                         formControlName="nombre"
                         placeholder="Nombre del Producto">
-                    <span 
+                    <span *ngIf="campoValido('nombre')"
                         class="form-text text-danger">
                         Debe de ser mayor a dos letras
                     </span>
@@ -31,7 +31,7 @@
                         class="form-control"
                         formControlName="precio"
                         placeholder="Precio del Precio">
-                    <span 
+                    <span *ngIf="campoValido('precio')"
                         class="form-text text-danger">
                         El precio debe ser mayor o igual a cero.
                     </span>
@@ -47,14 +47,19 @@
                         class="form-control"
                         formControlName="existencias"
                         placeholder="Existencias del Producto">
+                    <span *ngIf="campoValido('existencias')"
+                        class="form-text text-danger">
+                        Las existencias debe ser mayor o igual a cero.
+                    </span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" 
-                        [disabled]="miFormulario.invalid"
+                    <button type="submit"  
+                        (click)="guardar()"                       
                         class="btn btn-primary float-end">
+                        <!-- [disabled]="miFormulario.invalid" -->
                         Guardar
                 </button>
                 </div>

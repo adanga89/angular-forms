@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -7,7 +7,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styles: [
   ]
 })
-export class BasicosComponent {
+export class BasicosComponent implements OnInit{
 
   // miFormulario: FormGroup = new FormGroup({
   //   nombre: new FormControl('RTX 4300i'),
@@ -15,17 +15,38 @@ export class BasicosComponent {
   //   existencias: new FormControl(5)
   // });
 
+  ngOnInit(): void {
+    // this.miFormulario.reset({
+    //   precio: 0,
+    //   existencias: 0
+    // })
+  }
+
   miFormulario: FormGroup = this.fb.group({
-    nombre: ['RTX 4080i',
+    nombre: ['',
              /*validadores sincronos*/
             [
               Validators.required,
               Validators.minLength(3)
             ],
             /*Validadores Asíncronos*/],
-    precio: [ 1500, [Validators.required, Validators.min(0)] ],
-    existencias: [ 5 , [Validators.required, Validators.min(0)] ]
+    precio: [ , [Validators.required, Validators.min(0)] ],
+    existencias: [  , [Validators.required, Validators.min(0)] ]
   })
 
   constructor(private fb: FormBuilder){}
+
+  campoValido(campo: string){
+    return this.miFormulario.controls[campo].errors &&
+           this.miFormulario.controls[campo].touched
+  }
+
+  guardar(){
+    if(this.miFormulario.invalid) {
+      this.miFormulario.markAllAsTouched()
+      return;
+    }
+
+    this.miFormulario.reset();
+  }
 }
