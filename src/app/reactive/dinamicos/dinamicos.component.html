@@ -30,11 +30,12 @@
                 <input 
                     type="text"
                     class="form-control"
-                    (keyup.enter)="null"
+                    (keyup.enter)="agregarFavorito()"
+                    [formControl]="nuevoFavorito"
                     placeholder="Agregar Favorito">
                 <button type="button"
                     class="btn btn-outline-primary"
-                    (click)="null">
+                    (click)="agregarFavorito()">
                     Agregar
                 </button>
             </div>
