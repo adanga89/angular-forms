@@ -49,4 +49,7 @@ export class DinamicosComponent implements OnInit {
     this.nuevoFavorito.reset();
   }
 
+  borrar(index: number){
+    this.favoritosArr.removeAt(index);
+  }
 }
