@@ -3,15 +3,17 @@
 
 <div class="row">
     <div class="col">
-        <form autocomplete="off">
+        <form autocomplete="off" (ngSubmit)="submitFormulario()" [formGroup]="miFormulario">
             <!-- Nombre -->
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-9">
                     <input type="text"
                         class="form-control"
+                        formControlName="nombre"
                         placeholder="Nombre del Usuario">
-                    <span class="form-text text-danger">Debe ser Nombre Apellido</span>
+                    <span *ngIf="campoValido('nombre')" 
+                    class="form-text text-danger">Debe ser Nombre y Apellido</span>
                 </div>
             </div>
 
@@ -61,7 +63,7 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end">
+                    <button type="submit" class="btn btn-primary float-end">
                         Crear
                     </button>
                 </div>
@@ -69,3 +71,9 @@
         </form>
     </div>
 </div>
+
+<h2>Form valid</h2>
+<pre>{{miFormulario.valid | json}}</pre>
+
+<h2>Nombre</h2>
+<pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
