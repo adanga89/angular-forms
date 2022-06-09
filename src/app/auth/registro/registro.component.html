@@ -71,7 +71,9 @@
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">
+                    <button [disabled]="miFormulario.pending"
+                    type="submit" 
+                    class="btn btn-primary float-end">
                         Crear
                     </button>
                 </div>
@@ -84,6 +86,7 @@
 <pre>{{miFormulario.valid | json}}</pre>
 <pre>{{miFormulario.value | json}}</pre>
 <pre>{{miFormulario.errors | json}}</pre>
+<pre>Status: {{miFormulario.status | json}}</pre>
 
 <h2>Nombre</h2>
 <pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
