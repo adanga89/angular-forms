@@ -12,6 +12,16 @@ import { EmailValidatorService } from '../../shared/validator/email-validator.se
 })
 export class RegistroComponent implements OnInit {
 
+  get emailErrorMsg(): string{
+    const errors = this.miFormulario.get('email')?.errors;
+    if(errors?.['required'])
+      return "Email requerido";
+    else if(errors?.['pattern'])    
+      return "Formato de email erroneo";
+    else    
+      return "Email Existente";
+  }
+
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.pattern(this.validService.nombreApellidoPattern)]],
     email: ['', [Validators.required, Validators.email, Validators.pattern(this.validService.emailPattern)], [this.emailValidator]],
@@ -47,4 +57,5 @@ export class RegistroComponent implements OnInit {
     console.log(this.miFormulario.value);
   }
    
+
 }
